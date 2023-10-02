@@ -19,13 +19,16 @@ businessRoutes.route("/add").post(function (req, res) {
 
 // Defined get data(index or listing) route
 businessRoutes.route("/").get(function (req, res) {
-  Business.find(function (err, businesses) {
-    if (err) {
+  Business.find()
+    .then((businesses) => {
+      console.log("okkkkkkkkkkkkkkkkkkkkk");
+      console.log({ businesses });
+      return res.json(businesses);
+    })
+    .catch((err) => {
+      console.log("---------");
       console.log(err);
-    } else {
-      res.json(businesses);
-    }
-  });
+    });
 });
 
 // Defined edit route
